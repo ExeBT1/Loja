@@ -6,8 +6,22 @@
     <title>Loja de Camisetas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-	<main class="container" id="lista-produtos"></main>
-	<script src="script.js"></script>
+<body>
+
+    <header>
+        <h1>Loja de Camisetas</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Carrinho 🛒</a></li>
+            </ul>
+        </nav>
+        <input type="text" id="search" placeholder="Buscar camiseta..." onkeyup="buscarProduto()">
+    </header>
+
+    <main class="container" id="lista-produtos"></main>
 
     <footer>
         <p>© 2025 Loja de Camisetas - Todos os direitos reservados</p>
