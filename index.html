@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja de Camisetas</title>
+    <title>Loja Moderna</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <header>
-        <h1>Loja de Camisetas</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Produtos</a></li>
-                <li><a href="#">Contato</a></li>
-				<li><a href="carrinho.html">Carrinho 🛒</a></li>
-				<li><a href="admin.html">Admin</a></li>
-            </ul>
-        </nav>
-        <input type="text" id="search" placeholder="Buscar camiseta..." onkeyup="buscarProduto()">
+        <h1>Loja Moderna</h1>
+        <button id="menu-toggle">☰ Menu</button>
+    </header>
 
-    <main class="container" id="lista-produtos"></main>
-	
-	<div id="carrinho" class="carrinho"></div>
+    <aside id="menu">
+        <button id="close-menu">✖ Fechar</button>
+        <h2>Categorias</h2>
+        <ul>
+            <li onclick="filtrarCategoria('camisetas')">Camisetas</li>
+            <li onclick="filtrarCategoria('calças')">Calças</li>
+            <li onclick="filtrarCategoria('acessorios')">Acessórios</li>
+        </ul>
+        <h2>Filtros</h2>
+        <label>Preço:
+            <input type="range" id="preco-filter" min="0" max="300" step="10" oninput="filtrarPreco()">
+        </label>
+    </aside>
+
+    <main class="container">
+        <div id="lista-produtos"></div>
+    </main>
 
     <footer>
-        <p>© 2025 Loja de Camisetas - Todos os direitos reservados</p>
+        <p>© 2025 Loja Moderna - Todos os direitos reservados</p>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
