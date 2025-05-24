@@ -1,4 +1,6 @@
-async function carregarProdutos() {
+let carrinho = [];
+
+function carregarProdutos() {
     const produtos = [
         { nome: "Camiseta Geométrica", preco: "59,90", imagem: "camiseta1.jpg" },
         { nome: "Camiseta Neon Tech", preco: "69,90", imagem: "camiseta2.jpg" },
@@ -21,24 +23,40 @@ async function carregarProdutos() {
             <img src="${produto.imagem}" alt="${produto.nome}">
             <h2>${produto.nome}</h2>
             <p>R$ ${produto.preco}</p>
-            <button onclick="adicionarAoCarrinho('${produto.nome}')">Comprar</button>
+            <button onclick="adicionarAoCarrinho('${produto.nome}', '${produto.preco}')">Comprar</button>
         `;
         container.appendChild(card);
     });
 }
 
-function buscarProduto() {
-    let input = document.getElementById('search').value.toLowerCase();
-    let produtos = document.querySelectorAll('.produto');
+function adicionarAoCarrinho(nome, preco) {
+    carrinho.push({ nome, preco });
 
-    produtos.forEach(produto => {
-        let nome = produto.querySelector('h2').textContent.toLowerCase();
-        produto.style.display = nome.includes(input) ? 'block' : 'none';
-    });
+    atualizarCarrinho();
 }
 
-function adicionarAoCarrinho(produto) {
-    alert(produto + " foi adicionado ao carrinho!");
+function atualizarCarrinho() {
+    let carrinhoContainer = document.getElementById("carrinho");
+    carrinhoContainer.innerHTML = "<h2>Carrinho 🛒</h2>";
+
+    if (carrinho.length === 0) {
+        carrinhoContainer.innerHTML += "<p>Seu carrinho está vazio.</p>";
+        return;
+    }
+
+    carrinho.forEach((produto, index) => {
+        carrinhoContainer.innerHTML += `
+            <p>${produto.nome} - R$ ${produto.preco} <button onclick="removerDoCarrinho(${index})">❌</button></p>
+        `;
+    });
+
+    let total = carrinho.reduce((acc, produto) => acc + parseFloat(produto.preco.replace(",", ".")), 0);
+    carrinhoContainer.innerHTML += `<p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
+}
+
+function removerDoCarrinho(index) {
+    carrinho.splice(index, 1);
+    atualizarCarrinho();
 }
 
 carregarProdutos();
