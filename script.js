@@ -29,39 +29,6 @@ function carregarProdutos() {
     });
 }
 
-function adicionarAoCarrinho(nome, preco) {
-    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    carrinho.push({ nome, preco });
-
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-
-    alert(nome + " foi adicionado ao carrinho!");
-}
-
-function atualizarCarrinho() {
-    let carrinhoContainer = document.getElementById("carrinho");
-    carrinhoContainer.innerHTML = "<h2>Carrinho 🛒</h2>";
-
-    if (carrinho.length === 0) {
-        carrinhoContainer.innerHTML += "<p>Seu carrinho está vazio.</p>";
-        return;
-    }
-
-    carrinho.forEach((produto, index) => {
-        carrinhoContainer.innerHTML += `
-            <p>${produto.nome} - R$ ${produto.preco} <button onclick="removerDoCarrinho(${index})">❌</button></p>
-        `;
-    });
-
-    let total = carrinho.reduce((acc, produto) => acc + parseFloat(produto.preco.replace(",", ".")), 0);
-    carrinhoContainer.innerHTML += `<p><strong>Total: R$ ${total.toFixed(2)}</strong></p>`;
-}
-
-function removerDoCarrinho(index) {
-    carrinho.splice(index, 1);
-    atualizarCarrinho();
-}
-
 function carregarProdutos() {
     let produtosDefault = [
         { nome: "Camiseta Geométrica", preco: "59,90", imagem: "camiseta1.jpg" },

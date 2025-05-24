@@ -31,6 +31,12 @@
     </main>
 
     <script src="admin.js"></script>
+	
+	<scrip t>
+    if (localStorage.getItem("adminLogado") !== "true") {
+        window.location.href = "login.html";
+    }
+	</script>
 
 </body>
 </html>
