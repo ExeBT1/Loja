@@ -62,5 +62,29 @@ function removerDoCarrinho(index) {
     atualizarCarrinho();
 }
 
+function carregarProdutos() {
+    let produtosDefault = [
+        { nome: "Camiseta Geométrica", preco: "59,90", imagem: "camiseta1.jpg" },
+        { nome: "Camiseta Neon Tech", preco: "69,90", imagem: "camiseta2.jpg" }
+    ];
+
+    let produtosSalvos = JSON.parse(localStorage.getItem("produtos")) || [];
+    let produtos = produtosDefault.concat(produtosSalvos);
+
+    const container = document.getElementById("lista-produtos");
+    container.innerHTML = "";
+
+    produtos.forEach(produto => {
+        let card = document.createElement("div");
+        card.classList.add("produto");
+        card.innerHTML = `
+            <img src="${produto.imagem}" alt="${produto.nome}">
+            <h2>${produto.nome}</h2>
+            <p>R$ ${produto.preco}</p>
+            <button onclick="adicionarAoCarrinho('${produto.nome}', '${produto.preco}')">Comprar</button>
+        `;
+        container.appendChild(card);
+    });
+}
 
 carregarProdutos();
