@@ -30,9 +30,12 @@ function carregarProdutos() {
 }
 
 function adicionarAoCarrinho(nome, preco) {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
     carrinho.push({ nome, preco });
 
-    atualizarCarrinho();
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+    alert(nome + " foi adicionado ao carrinho!");
 }
 
 function atualizarCarrinho() {
@@ -58,5 +61,6 @@ function removerDoCarrinho(index) {
     carrinho.splice(index, 1);
     atualizarCarrinho();
 }
+
 
 carregarProdutos();
